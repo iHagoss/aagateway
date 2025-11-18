@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="uk.co.borconi.emil.aagateway">
+
     <uses-feature android:name="android.hardware.usb"/>
     <uses-feature android:name="android.hardware.usb.accessory"/>
 
@@ -9,7 +10,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,7 +17,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" android:launchMode="singleInstance" android:showOnLockScreen="true">
+
+        <activity 
+            android:name=".MainActivity" 
+            android:launchMode="singleInstance" 
+            android:exported="true"> <!-- Required for activities with intent filters -->
             <intent-filter>
                 <action android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED"/>
                 <action android:name="android.hardware.usb.action.USB_ACCESSORY_DETACHED"/>
@@ -26,14 +30,20 @@
             </intent-filter>
             <meta-data android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED" android:resource="@xml/accessory_filter"/>
         </activity>
-        <receiver android:name=".PowerConnectionReceiver">
+
+        <receiver 
+            android:name=".PowerConnectionReceiver" 
+            android:exported="true"> <!-- Required for receivers with intent filters -->
             <intent-filter>
                 <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
             </intent-filter>
         </receiver>
-        <service android:name=".HackerService" android:exported="false">
 
+        <service 
+            android:name=".HackerService" 
+            android:exported="false"> <!-- Exported false as no intent-filter -->
         </service>
+
     </application>
 
 </manifest>

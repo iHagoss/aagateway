@@ -1,35 +1,28 @@
 package uk.co.borconi.emil.aagateway;
 
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.ToggleButton;
-
 
 public class MainActivity extends AppCompatActivity {
 
-
-
     private static final String TAG = "AAGateWay";
     private SharedPreferences preferences;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        if (getIntent().getAction()!=null && getIntent().getAction().equalsIgnoreCase("android.intent.action.MAIN")) {
+        if (getIntent().getAction() != null && getIntent().getAction().equalsIgnoreCase("android.intent.action.MAIN")) {
 
             preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
@@ -63,11 +56,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-
     }
 
     @Override
-        protected void onResume() {
+    protected void onResume() {
         super.onResume();
 
         Intent paramIntent = getIntent();
@@ -80,24 +72,18 @@ public class MainActivity extends AppCompatActivity {
         } else if (paramIntent.getAction() != null && paramIntent.getAction().equalsIgnoreCase("android.hardware.usb.action.USB_ACCESSORY_ATTACHED")) {
             Log.d(TAG, "USB CONNECTED");
 
-            // findViewById(R.id.textView).setVisibility(View.VISIBLE);
-            //((TextView)findViewById(R.id.textView)).setText(paramIntent.getParcelableExtra("accessory").toString());
-
-
             if (paramIntent.getParcelableExtra("accessory") != null) {
                 i.putExtra("accessory", paramIntent.getParcelableExtra("accessory"));
-                ContextCompat.startForegroundService(this,i);
+                ContextCompat.startForegroundService(this, i);
             }
             finish();
         }
     }
 
     @Override
-    protected void onNewIntent(Intent paramIntent)
-    {
+    protected void onNewIntent(Intent paramIntent) {
         Log.i(TAG, "Got new intent: " + paramIntent);
         super.onNewIntent(paramIntent);
         setIntent(paramIntent);
     }
-
 }

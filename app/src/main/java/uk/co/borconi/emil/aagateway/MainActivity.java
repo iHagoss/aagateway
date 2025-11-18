@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
+import android.hardware.usb.UsbAccessory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "USB CONNECTED");
 
             if (paramIntent.getParcelableExtra("accessory") != null) {
-                i.putExtra("accessory", paramIntent.getParcelableExtra("accessory"));
+                i.putExtra("accessory", (UsbAccessory) paramIntent.getParcelableExtra("accessory"));
                 ContextCompat.startForegroundService(this, i);
             }
             finish();

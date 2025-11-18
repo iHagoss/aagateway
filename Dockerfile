@@ -1,34 +1,37 @@
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
-
-# https://developer.android.com/studio/index.html#command-tools
-
 WORKDIR /opt/android
 
-RUN apt-get update \
-    && apt-get install -y \
-      curl \
-      unzip \
-      openjdk-8-jdk
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    unzip \
+    git \
+    openjdk-17-jdk \
+    dos2unix \
+    && rm -rf /var/lib/apt/lists/*
 
-# jdk 8, 11, 13 ,16
-#     && apt-get install -y android-sdk
-
+# Set environment variables
 ENV ANDROID_HOME=/opt/android
-ENV PATH=$ANDROID_HOME/cmdline-tools/tools/bin/:$PATH
-ENV PATH=$ANDROID_HOME/emulator/:$PATH
-ENV PATH=$ANDROID_HOME/platform-tools/:$PATH
+ENV PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
 
-RUN curl -L $(curl -sL https://developer.android.com/studio/index.html\#command-tools | grep "zip" | grep "linux" | grep "commandline" | grep "href" | cut -d'"' -f2) -O \
-    && unzip $(ls | grep zip) \
-    && rm -rf $(ls | grep zip) \
-    && mkdir tools \
-    && mv cmdline-tools/* tools \
-    && mv tools cmdline-tools/ \
-    && yes | sdkmanager --licenses
+# Download Android SDK command line tools and fix layout
+RUN curl -o commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip \
+    && mkdir -p $ANDROID_HOME/cmdline-tools \
+    && unzip commandlinetools.zip -d $ANDROID_HOME/cmdline-tools \
+    && rm commandlinetools.zip \
+    && mv $ANDROID_HOME/cmdline-tools/cmdline-tools $ANDROID_HOME/cmdline-tools/latest
 
-# ENV GRADLE_OPTS=-Djava.io.tmpdir=/repo/
-# export GRADLE_OPTS=-Djava.io.tmpdir=/repo/
+# Accept licenses and install SDK 35 + build-tools
+RUN yes | sdkmanager --licenses \
+    && sdkmanager "platform-tools" \
+    && sdkmanager "platforms;android-34" \
+    && sdkmanager "build-tools;35.0.0"
 
-# ./gradlew assemble
+# Switch to project workspace
+WORKDIR /repo
+COPY . /repo
+
+# Fix Gradle wrapper permissions only (no build here)
+RUN dos2unix gradlew && chmod +x gradlew

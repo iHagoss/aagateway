@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     unzip \
     git \
-    openjdk-17-jdk \
+    openjdk-11-jdk \
     dos2unix \
     && rm -rf /var/lib/apt/lists/*
 

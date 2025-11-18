@@ -18,7 +18,7 @@ import android.os.Build;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.ParcelFileDescriptor;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -37,11 +37,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.Arrays;
 
-
-
 import static android.app.NotificationManager.IMPORTANCE_HIGH;
-
-
 
 /**
  * Created by Emil on 25/03/2018.

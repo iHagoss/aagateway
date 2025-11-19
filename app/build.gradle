@@ -10,10 +10,13 @@ android {
         versionCode 1
         versionName "1.0.3 Alpha"
 
-        // Use AndroidX test runner instead of legacy support runner
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
         multiDexEnabled true
+
+        // ✅ Only include ABIs supported by Galaxy S10+
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a"
+        }
     }
 
     buildTypes {
@@ -24,12 +27,12 @@ android {
         }
     }
 
-    // ✅ Universal APK packaging so you avoid ABI mismatch errors
+    // ✅ Universal APK packaging for ARM
     splits {
         abi {
             enable true
             reset()
-            include "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+            include "armeabi-v7a", "arm64-v8a"
             universalApk true
         }
     }
@@ -38,19 +41,14 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    // AndroidX core libraries
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.preference:preference:1.2.0'
     implementation 'androidx.multidex:multidex:2.0.1'
 
-    // JUnit
     testImplementation 'junit:junit:4.13.2'
-
-    // AndroidX Test libraries
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-    // Local protobuf jar
     implementation files('libs/protobuf-java-3.6.0.jar')
 }

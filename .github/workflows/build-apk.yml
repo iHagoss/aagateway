@@ -6,12 +6,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout source
         uses: actions/checkout@v4
 
       - name: Build Docker image
         run: docker build -t android-builder .
+
+      - name: Fix Gradle wrapper permissions
+        run: chmod +x gradlew
 
       - name: Run Gradle build inside container
         run: docker run --rm -v ${{ github.workspace }}:/repo -w /repo android-builder ./gradlew :app:assembleDebug --stacktrace
@@ -19,8 +23,8 @@ jobs:
       - name: List APK outputs
         run: ls -R app/build/outputs/apk || true
 
-      - name: Upload APK artifacts
+      - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: debug-apks
-          path: app/build/outputs/apk/**/*.apk
+          name: debug-apk
+          path: app/build/outputs/apk/debug/*.apk

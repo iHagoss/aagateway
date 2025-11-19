@@ -1,50 +1,23 @@
 name: Build APK
 
 on:
- workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
-  tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: "YamlLint"
-        run: |
-          docker run \
-            --rm \
-            -w /repo \
-            -v $(pwd):/repo \
-            -t \
-            alpine:3.13 /bin/sh -c " \
-              apk add --no-cache py-pip python3 bash \
-              && pip3 install yamllint \
-              && yamllint -s . \
-            "
-      - name: "ShellCheck"
-        run: |
-          docker run \
-            --rm \
-            -w /repo \
-            -v $(pwd):/repo \
-            -t \
-            alpine:3.13 /bin/sh -c " \
-              apk add --no-cache shellcheck bash \
-              && shellcheck $(find . -type f -name "*.sh" |  tr '\n' ' ')
-            "
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: "Build APK"
-        run: ./build_in_docker.sh
-      - name: Release
-        uses: softprops/action-gh-release@v2
-        if: startsWith(github.ref, 'refs/tags/')
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build APK in Docker
+        run: docker build -t android-builder .
+
+      - name: Run Gradle build inside container
+        run: docker run --rm -v ${{ github.workspace }}:/repo android-builder ./gradlew assembleDebug --stacktrace
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
         with:
-          tag_name: ${{ github.ref }}
-          name: Release ${{ github.ref }}
-          draft: true
-          files: |
-            ./app/build/outputs/apk/debug/*
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # You don't need to add this in secrets it's by default.
+          name: app-debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk

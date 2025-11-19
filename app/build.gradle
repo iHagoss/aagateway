@@ -1,25 +1,22 @@
-plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
-}
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
-    // ✅ Namespace aligned with your new brand
+    // ✅ Updated for SDK 36
     namespace "com.hagos.modded.aagateway"
-    compileSdk 36
+    compileSdkVersion 36
 
     defaultConfig {
-        // ✅ ApplicationId updated to match your brand
         applicationId "com.hagos.modded.aagateway"
-        minSdk 21
-        targetSdk 36
-        versionCode 2        // bump for V2.0
+        minSdkVersion 22
+        targetSdkVersion 36
+        versionCode 2
         versionName "2.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
 
-        // ✅ Only include ABIs supported by Galaxy S10+ and modern ARM devices
+        // ✅ Only include ABIs supported by Galaxy S10+
         ndk {
             abiFilters "armeabi-v7a", "arm64-v8a"
         }
@@ -63,7 +60,7 @@ dependencies {
     // Local protobuf jar
     implementation files('libs/protobuf-java-3.6.0.jar')
 
-    // ✅ Force Kotlin stdlib to a single version to avoid duplicate class errors
+    // ✅ Force Kotlin stdlib to a single version
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.25"
 }
 

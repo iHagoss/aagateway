@@ -10,14 +10,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build APK in Docker
+      - name: Build Docker image
         run: docker build -t android-builder .
 
       - name: Run Gradle build inside container
         run: docker run --rm -v ${{ github.workspace }}:/repo android-builder ./gradlew assembleDebug --stacktrace
 
-      - name: Upload APK artifact
+      - name: Upload APK artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: app-debug-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: debug-apks
+          path: |
+            app/build/outputs/apk/debug/app-debug.apk
+            app/build/outputs/apk/debug/*-universal.apk

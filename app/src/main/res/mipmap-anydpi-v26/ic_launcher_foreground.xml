@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Transparent canvas -->
+    <group android:name="center" android:translateX="54" android:translateY="54">
+
+        <!-- Outer neon green glow (wide, low alpha) -->
+        <path
+            android:pathData="M -26,-26 L -26,26 M 26,-26 L 26,26 M -26,0 L 26,0"
+            android:strokeColor="#8039FF14"
+            android:strokeWidth="10"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:fillColor="#00000000"/>
+
+        <!-- Mid neon purple glow (medium, low alpha) -->
+        <path
+            android:pathData="M -26,-26 L -26,26 M 26,-26 L 26,26 M -26,0 L 26,0"
+            android:strokeColor="#809D00FF"
+            android:strokeWidth="7"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:fillColor="#00000000"/>
+
+        <!-- Inner crisp neon green stroke -->
+        <path
+            android:pathData="M -26,-26 L -26,26 M 26,-26 L 26,26 M -26,0 L 26,0"
+            android:strokeColor="@color/neonGreen"
+            android:strokeWidth="4"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:fillColor="#00000000"/>
+
+        <!-- Accent dot (neon purple) to finish the mark -->
+        <path
+            android:pathData="M 0,0 m -4,0 a 4,4 0 1,0 8,0 a 4,4 0 1,0 -8,0"
+            android:fillColor="@color/neonPurple"/>
+    </group>
+</vector>

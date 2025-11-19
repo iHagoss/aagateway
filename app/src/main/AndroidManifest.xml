@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="uk.co.borconi.emil.aagateway">
+    package="com.hagos.modded.aagateway">
 
     <uses-feature android:name="android.hardware.usb"/>
     <uses-feature android:name="android.hardware.usb.accessory"/>
@@ -16,34 +16,34 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/Theme.Hagos.AAGateway"> <!-- ✅ Global neon theme -->
 
-        <activity 
-            android:name=".MainActivity" 
-            android:launchMode="singleInstance" 
-            android:exported="true"> <!-- Required for activities with intent filters -->
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED"/>
                 <action android:name="android.hardware.usb.action.USB_ACCESSORY_DETACHED"/>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-            <meta-data android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED" android:resource="@xml/accessory_filter"/>
+            <meta-data
+                android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED"
+                android:resource="@xml/accessory_filter"/>
         </activity>
 
-        <receiver 
-            android:name=".PowerConnectionReceiver" 
-            android:exported="true"> <!-- Required for receivers with intent filters -->
+        <receiver
+            android:name=".PowerConnectionReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
             </intent-filter>
         </receiver>
 
-        <service 
-            android:name=".HackerService" 
-            android:exported="false"> <!-- Exported false as no intent-filter -->
-        </service>
-
+        <service
+            android:name=".GatewayService"
+            android:exported="false"/>
     </application>
 
 </manifest>

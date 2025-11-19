@@ -1,11 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <!-- Dark neon application theme -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/neonPurple</item>
+        <item name="colorPrimaryDark">@color/neonPurpleDark</item>
+        <item name="colorAccent">@color/neonGreen</item>
+        <item name="android:windowBackground">@color/darkBackground</item>
+        <item name="android:textColor">@color/neonGreen</item>
+        <item name="android:statusBarColor">@color/neonPurpleDark</item>
+        <item name="android:navigationBarColor">@color/darkBackground</item>
+    </style>
+
+    <!-- Neon button style -->
+    <style name="NeonButton" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/neon_ripple</item>
+        <item name="android:textColor">@color/neonGreen</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Neon toggle style -->
+    <style name="NeonToggle" parent="Widget.AppCompat.CompoundButton.Toggle">
+        <item name="android:background">@drawable/neon_ripple</item>
+        <item name="android:textColor">@color/neonGreen</item>
+    </style>
+
+    <!-- Neon text style -->
+    <style name="NeonText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/neonGreen</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

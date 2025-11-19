@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
@@ -61,4 +62,15 @@ dependencies {
 
     // Local protobuf jar
     implementation files('libs/protobuf-java-3.6.0.jar')
+
+    // ✅ Force Kotlin stdlib to a single version to avoid duplicate class errors
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.25"
+}
+
+configurations.all {
+    resolutionStrategy {
+        force "org.jetbrains.kotlin:kotlin-stdlib:1.9.25"
+        force "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.25"
+        force "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.25"
+    }
 }

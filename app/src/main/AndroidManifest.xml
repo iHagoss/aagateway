@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.hagos.modded.aagateway">
 
-    <!-- USB features -->
-    <uses-feature android:name="android.hardware.usb" />
-    <uses-feature android:name="android.hardware.usb.accessory" />
+    <uses-feature android:name="android.hardware.usb"/>
+    <uses-feature android:name="android.hardware.usb.accessory"/>
 
-    <!-- Permissions -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -19,35 +18,32 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!-- Main activity -->
-        <activity
-            android:name=".MainActivity"
-            android:launchMode="singleTask"
-            android:exported="true">
+        <activity 
+            android:name=".MainActivity" 
+            android:launchMode="singleInstance" 
+            android:exported="true"> <!-- Required for activities with intent filters -->
             <intent-filter>
-                <action android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED" />
-                <action android:name="android.hardware.usb.action.USB_ACCESSORY_DETACHED" />
+                <action android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED"/>
+                <action android:name="android.hardware.usb.action.USB_ACCESSORY_DETACHED"/>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <meta-data
-                android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED"
-                android:resource="@xml/accessory_filter" />
+            <meta-data android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED" android:resource="@xml/accessory_filter"/>
         </activity>
 
-        <!-- Receiver -->
-        <receiver
-            android:name=".PowerConnectionReceiver"
-            android:exported="true">
+        <receiver 
+            android:name=".PowerConnectionReceiver" 
+            android:exported="true"> <!-- Required for receivers with intent filters -->
             <intent-filter>
-                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
             </intent-filter>
         </receiver>
 
-        <!-- Service -->
-        <service
-            android:name=".GatewayService"
-            android:exported="false" />
+        <service 
+            android:name=".HackerService" 
+            android:exported="false"> <!-- Exported false as no intent-filter -->
+        </service>
+
     </application>
 
 </manifest>

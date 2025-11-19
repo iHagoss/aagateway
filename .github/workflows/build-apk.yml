@@ -10,10 +10,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # ✅ Ensure gradlew is executable before mounting into Docker
-      - name: Fix Gradle wrapper permissions
-        run: chmod +x gradlew
-
       - name: Build Docker image
         run: docker build -t android-builder .
 

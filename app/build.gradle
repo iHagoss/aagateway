@@ -1,15 +1,12 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
 
 android {
-    // ✅ Updated for SDK 36
-    namespace "com.hagos.modded.aagateway"
-    compileSdkVersion 36
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "com.hagos.modded.aagateway"
         minSdkVersion 22
-        targetSdkVersion 36
+        targetSdkVersion 33
         versionCode 2
         versionName "2.0"
 
@@ -44,30 +41,14 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    // AndroidX core libraries (latest stable)
-    implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
-    implementation 'androidx.preference:preference:1.2.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.preference:preference:1.2.0'
     implementation 'androidx.multidex:multidex:2.0.1'
 
-    // JUnit (unit testing)
     testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-    // AndroidX Test libraries (instrumented testing)
-    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
-
-    // Local protobuf jar
     implementation files('libs/protobuf-java-3.6.0.jar')
-
-    // ✅ Force Kotlin stdlib to a single version
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.25"
-}
-
-configurations.all {
-    resolutionStrategy {
-        force "org.jetbrains.kotlin:kotlin-stdlib:1.9.25"
-        force "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.25"
-        force "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.25"
-    }
 }

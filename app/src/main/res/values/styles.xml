@@ -10,10 +10,10 @@
     </style>
 
     <!-- Neon toggle style -->
-    <style name="NeonToggle" parent="Widget.AppCompat.CompoundButton.Toggle">
+    <style name="NeonToggle" parent="Widget.AppCompat.ToggleButton">
         <item name="android:textColor">@color/neonText</item>
-        <item name="android:buttonTint">@color/neonPurple</item>
         <item name="android:backgroundTint">@color/darkBackground</item>
+        <item name="android:buttonTint">@color/neonPurple</item>
     </style>
 
     <!-- Neon button style -->

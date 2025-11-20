@@ -3,12 +3,12 @@ FROM ubuntu:24.04
 ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /opt/android
 
-Dependencies
+#Dependencies
 RUN apt-get update && apt-get install -y \
     curl unzip git openjdk-17-jdk dos2unix \
     && rm -rf /var/lib/apt/lists/*
 
-Android SDK
+#Android SDK
 ENV ANDROID_HOME=/opt/android
 ENV PATH=$ANDROIDHOME/cmdline-tools/latest/bin:$ANDROIDHOME/platform-tools:$PATH
 

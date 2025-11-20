@@ -20,7 +20,7 @@
     <!-- Neon button style -->
     <style name="NeonButton" parent="Widget.Material3.Button">
         <item name="android:textColor">@color/neonText</item>
-        <item name="textColor">@color/neonText</item>
+        <item name="android:textColor">@color/neonText</item>
         <item name="android:backgroundTint">@color/neonPurple</item>
         <item name="backgroundTint">@color/neonPurple</item>
         <item name="android:fontFamily">sans-serif-medium</item>

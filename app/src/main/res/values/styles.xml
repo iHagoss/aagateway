@@ -18,17 +18,11 @@
     </style>
 
     <!-- Neon button style -->
-    <!-- Includes both android: and non-android attrs for Material3 compatibility -->
     <style name="NeonButton" parent="Widget.Material3.Button">
-        <!-- Text color -->
         <item name="android:textColor">@color/neonText</item>
         <item name="textColor">@color/neonText</item>
-
-        <!-- Background tint -->
         <item name="android:backgroundTint">@color/neonPurple</item>
         <item name="backgroundTint">@color/neonPurple</item>
-
-        <!-- Font -->
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 

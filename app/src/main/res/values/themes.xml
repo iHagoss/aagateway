@@ -1,0 +1,28 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base dark neon theme -->
+    <style name="Theme.NeonDark" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/neonPurple</item>
+        <item name="colorOnPrimary">@color/neonText</item>
+
+        <item name="colorSecondary">@color/neonGreen</item>
+        <item name="colorOnSecondary">@color/neonText</item>
+
+        <item name="colorTertiary">@color/neonCyan</item>
+        <item name="colorOnTertiary">@color/neonText</item>
+
+        <item name="android:colorBackground">@color/neonBackground</item>
+        <item name="android:textColor">@color/neonText</item>
+
+        <!-- Overlay to satisfy dynamicColorThemeOverlay -->
+        <item name="dynamicColorThemeOverlay">@style/ThemeOverlay.NeonDark</item>
+    </style>
+
+    <!-- Overlay style for dynamic color -->
+    <style name="ThemeOverlay.NeonDark">
+        <item name="colorPrimary">@color/neonPurple</item>
+        <item name="colorSecondary">@color/neonGreen</item>
+        <item name="colorTertiary">@color/neonCyan</item>
+    </style>
+
+</resources>

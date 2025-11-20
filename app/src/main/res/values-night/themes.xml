@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Force neon dark theme when system is in night mode -->
+    <style name="Theme.Hagos.AAGateway" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Neon palette -->
+        <item name="colorPrimary">@color/neonPurple</item>
+        <item name="colorPrimaryDark">@color/neonPurpleDark</item>
+        <item name="colorAccent">@color/neonGreen</item>
+
+        <!-- System bars -->
+        <item name="android:statusBarColor">@color/neonPurpleDark</item>
+        <item name="android:navigationBarColor">@color/darkBackground</item>
+        <item name="android:windowBackground">@color/darkBackground</item>
+
+        <!-- Disable dynamic color override -->
+        <item name="material3:dynamicColorThemeOverlay" tools:ignore="MissingPrefix">false</item>
+
+        <!-- Text defaults -->
+        <item name="android:textColor">@color/neonGreen</item>
+    </style>
+
+</resources>

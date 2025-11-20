@@ -23,11 +23,11 @@ RUN curl -o commandlinetools.zip https://dl.google.com/android/repository/comman
     && rm commandlinetools.zip \
     && mv $ANDROID_HOME/cmdline-tools/cmdline-tools $ANDROID_HOME/cmdline-tools/latest
 
-# Accept licenses and install SDK 33 + build-tools
+# Accept licenses and install SDK 35 + build-tools
 RUN yes | sdkmanager --licenses \
     && sdkmanager "platform-tools" \
-    && sdkmanager "platforms;android-33" \
-    && sdkmanager "build-tools;33.0.0"
+    && sdkmanager "platforms;android-35" \
+    && sdkmanager "build-tools;35.0.0"
 
 # Switch to project workspace
 WORKDIR /repo

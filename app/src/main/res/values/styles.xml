@@ -1,6 +1,6 @@
 <resources>
 
-    <!-- Neon text style -->
+     <!-- Neon text style -->
     <style name="NeonText" parent="TextAppearance.Material3.BodyLarge">
         <item name="android:textColor">@color/neonText</item>
         <item name="android:shadowColor">@color/neonPurpleDark</item>
@@ -10,8 +10,8 @@
     </style>
 
     <!-- Neon toggle style -->
-    <!-- FIXED: use Widget.AppCompat.ToggleButton (valid parent) -->
-    <style name="NeonToggle" parent="Widget.AppCompat.ToggleButton">
+    <!-- FIXED: use Widget.Material3.ToggleButton (valid parent) -->
+    <style name="NeonToggle" parent="Widget.Material3.ToggleButton">
         <item name="android:textColor">@color/neonText</item>
         <item name="android:backgroundTint">@color/darkBackground</item>
         <item name="android:buttonTint">@color/neonPurple</item>

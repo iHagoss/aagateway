@@ -1,3 +1,8 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
 android {
     namespace "uk.co.borconi.emil.aagateway"
     compileSdk 35
@@ -10,49 +15,37 @@ android {
         versionName "2.0"
     }
 
-    // Java bytecode level
+    // Compile for Java 11 bytecode
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
-
-        // Enforce --release 11 for consistent linkage against JDK 11 APIs
-        // (AGP will pass --release automatically for toolchains; this is explicit)
-        coreLibraryDesugaringEnabled true
     }
 
-    // Kotlin bytecode level
     kotlinOptions {
         jvmTarget = "11"
-        // Enable Gradle workers with proper toolchain
         freeCompilerArgs += ["-Xjdk-release=11"]
     }
 
-    // Use Gradle’s Java toolchain to run with JDK 17
-    // (This controls the JDK used to run tasks, not the bytecode target)
+    // Run Gradle/AGP with JDK 17 toolchain
     java {
         toolchain {
             languageVersion = JavaLanguageVersion.of(17)
         }
     }
-
-    buildFeatures {
-        viewBinding true
-    }
 }
 
 dependencies {
-    // Desugaring for Java 11 APIs on older Android
+    implementation "com.google.android.material:material:1.12.0"
+    implementation "androidx.appcompat:appcompat:1.7.0"
+    implementation "androidx.constraintlayout:constraintlayout:2.2.0"
+    implementation "androidx.preference:preference:1.2.1"
+    implementation "androidx.multidex:multidex:2.0.1"
+
     coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:2.0.4"
 
-    implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
-    implementation 'androidx.preference:preference:1.2.1'
-    implementation 'com.google.android.material:material:1.12.0'
-    implementation 'androidx.multidex:multidex:2.0.1'
+    testImplementation "junit:junit:4.13.2"
+    androidTestImplementation "androidx.test.ext:junit:1.2.1"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.6.1"
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
-
-    implementation files('libs/protobuf-java-3.6.0.jar')
+    implementation files("libs/protobuf-java-3.6.0.jar")
 }

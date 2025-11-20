@@ -17,7 +17,7 @@ ENV ANDROID_HOME=/opt/android
 ENV PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
 
 # Download Android SDK command line tools and fix layout
-RUN curl -o commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip \
+RUN curl -o commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-12700392_latest.zip \
     && mkdir -p $ANDROID_HOME/cmdline-tools \
     && unzip commandlinetools.zip -d $ANDROID_HOME/cmdline-tools \
     && rm commandlinetools.zip \

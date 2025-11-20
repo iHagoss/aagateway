@@ -1,15 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-       <!-- Dark base -->
-    <color name="darkBackground">#0A0A0A</color>
-
-    <!-- Neon purple shades -->
-    <color name="neonPurple">#9D00FF</color>
-    <color name="neonPurpleDark">#5A00A3</color>
-
-    <!-- Neon green -->
+    <!-- Dark neon palette -->
+    <color name="neonPurple">#BF00FF</color>
     <color name="neonGreen">#39FF14</color>
+    <color name="neonCyan">#00FFFF</color>
+    <color name="neonBackground">#000000</color>
+    <color name="neonText">#FFFFFF</color>
 </resources>

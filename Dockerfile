@@ -1,28 +1,29 @@
-FROM ubuntu:24.04
+android {
+    compileSdk 35
 
-ENV DEBIAN_FRONTEND=noninteractive
-WORKDIR /opt/android
+    defaultConfig {
+        applicationId "uk.co.borconi.emil.aagateway"
+        minSdk 22
+        targetSdk 35
+        versionCode 2
+        versionName "2.0"
+    }
 
-# Dependencies
-RUN apt-get update && apt-get install -y \
-    curl unzip git openjdk-17-jdk dos2unix \
-    && rm -rf /var/lib/apt/lists/*
+    // Compile for Java 11 bytecode
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
 
-# Android SDK
-ENV ANDROID_HOME=/opt/android
-ENV PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
+    kotlinOptions {
+        jvmTarget = "11"
+        freeCompilerArgs += ["-Xjdk-release=11"]
+    }
 
-RUN curl -o commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip \
-    && mkdir -p $ANDROID_HOME/cmdline-tools \
-    && unzip commandlinetools.zip -d $ANDROID_HOME/cmdline-tools \
-    && rm commandlinetools.zip \
-    && mv $ANDROID_HOME/cmdline-tools/cmdline-tools $ANDROID_HOME/cmdline-tools/latest
-
-RUN yes | sdkmanager --licenses \
-    && sdkmanager "platform-tools" \
-    && sdkmanager "platforms;android-35" \
-    && sdkmanager "build-tools;35.0.0"
-
-WORKDIR /repo
-COPY . /repo
-RUN dos2unix gradlew && chmod +x gradlew
+    // Run Gradle/AGP with JDK 17 toolchain
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
+    }
+}

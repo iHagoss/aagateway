@@ -1,8 +1,12 @@
 <resources>
-    <!-- Dark neon palette -->
+    <!-- Existing neon palette -->
     <color name="neonPurple">#BF00FF</color>
     <color name="neonGreen">#39FF14</color>
     <color name="neonCyan">#00FFFF</color>
     <color name="neonBackground">#000000</color>
     <color name="neonText">#FFFFFF</color>
+
+    <!-- Missing dark variants -->
+    <color name="neonPurpleDark">#8000AA</color> <!-- deeper purple -->
+    <color name="darkBackground">#121212</color> <!-- Material dark background -->
 </resources>

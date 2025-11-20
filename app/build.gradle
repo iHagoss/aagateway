@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 35
 
     defaultConfig {
         applicationId "uk.co.borconi.emil.aagateway"
         minSdkVersion 22
-        targetSdkVersion 33
-        versionCode 1
-        versionName "1.0.3 Alpha"
+        targetSdkVersion 35
+        versionCode 2
+        versionName "2.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
@@ -41,14 +41,25 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.preference:preference:1.2.0'
+    // ✅ Core AndroidX libraries (latest stable)
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
+    implementation 'androidx.preference:preference:1.2.1'
     implementation 'androidx.multidex:multidex:2.0.1'
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    // ✅ Material Components (Material3 support, tested with AGP 8.8.1)
+    implementation 'com.google.android.material:material:1.12.0'
 
+    // ✅ Unit testing
+    testImplementation 'junit:junit:4.13.2'
+
+    // ✅ Instrumented testing
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+
+    // ✅ Local protobuf jar
     implementation files('libs/protobuf-java-3.6.0.jar')
+
+    // ✅ Kotlin stdlib aligned with Gradle 8.10.2 / AGP 8.8.1
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.25"
 }
